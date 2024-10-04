@@ -1,0 +1,39 @@
+This board is desiged to build a simple 3-axis CNC with this single 'combo' adapter.
+The integrated LCNC LSRIO16 provides an additional 16 input and 16 output ports
+
+The X, Y, Z axis and A or two other signals are not isolated, as they connect to stepper drivers.
+The remainder of all I/O signals is electrically isolated from the PC.
+
+Combo port example configuration:
+
+Pin Output Signal
+1   Enable
+2   X step
+3   X dir
+4   Y step
+5   Y dir
+6   Z step
+7   Z dir
+8   Spindle  etc
+9   Aux out
+14  LSRIO16 output
+16  LSRIO16 clock
+17  LSRIO16 data latch
+
+Pin Input signal
+10  X home
+11  Y home
+12  Z home
+13  Probe
+15  LSRIO16 input
+
+All other signals (limits, ext_estop)
+can be handled by the 16 in and 16
+output signals of the mux. (Polling
+delay max 300 msec)
+
+RCLK   <- SRIO-DATA_LATCH (P17)
+SRCLK  <- SRIO-CLOCK-OUTPUT (P16)
+DT-OUT -> LSRIO-INPUT-STREAM (P15)
+DT-IN  <- SRIO-OUTPUT-STREAM (P14)
+SRLD = inverted RCLK

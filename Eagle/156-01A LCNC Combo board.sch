@@ -20156,8 +20156,6 @@ delay max 300 msec)</text>
 <text x="248.92" y="177.8" size="2.54" layer="97">H</text>
 <text x="177.8" y="243.84" size="2.54" layer="97">H</text>
 <text x="208.28" y="243.84" size="2.54" layer="97">L</text>
-<text x="213.36" y="276.86" size="2.54" layer="97">H</text>
-<text x="187.96" y="276.86" size="2.54" layer="97">L</text>
 <text x="20.32" y="198.12" size="1.778" layer="97">To stepper drivers
 (NOT isolated prom PC)</text>
 <text x="307.34" y="127" size="2.54" layer="97">RCLK   &lt;- SRIO-DATA_LATCH (P17)

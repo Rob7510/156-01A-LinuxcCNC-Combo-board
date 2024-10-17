@@ -1,8 +1,12 @@
-This board is desiged to build a simple 3-axis CNC with this single 'combo' adapter.
-The integrated LCNC LSRIO16 provides an additional 16 input and 16 output ports
+Note: First version, in test.
 
-The X, Y, Z axis and A or two other signals are not isolated, as they connect to stepper drivers.
-The remainder of all I/O signals is electrically isolated from the PC.
+This board can drive in LinuxCNC a 3-axis CNC over a single printer port set to default(out/epp) mode,
+and provides 4 (pin 10-13) + 16 signal inputs and 9 (pin 1-9) + 16 output signals using the integrated
+LSRIO16 softwaare multiplexer.
+
+The X, Y, Z axis and A (or two other signals instead of A) are not isolated from the PC,
+they connect to stepper drivers that are normally floating.
+The remaining 20 input and 16 output signals are electrically isolated from the PC.
 
 Combo port example configuration:
 
@@ -16,24 +20,28 @@ Pin Output Signal
 7   Z dir
 8   Spindle  etc
 9   Aux out
-14  LSRIO16 output
-16  LSRIO16 clock
-17  LSRIO16 data latch
+14  LSRIO16 output (fixed onboard)
+16  LSRIO16 clock (fixed onboard)
+17  LSRIO16 data latch (fixed onboard)
 
 Pin Input signal
 10  X home
 11  Y home
 12  Z home
 13  Probe
-15  LSRIO16 input
+15  LSRIO16 input (fixed onboard)
 
-All other signals (limits, ext_estop)
-can be handled by the 16 in and 16
-output signals of the mux. (Polling
-delay max 300 msec)
+All other signals (eg limits, ext_estop, buttons, lights) can be handled by the 16 in and 16
+output signals of the LSRIO16 multimplexer with a polling delay of max 300 msec.
 
+LSRIO16 fixed signal connections 
 RCLK   <- SRIO-DATA_LATCH (P17)
 SRCLK  <- SRIO-CLOCK-OUTPUT (P16)
 DT-OUT -> LSRIO-INPUT-STREAM (P15)
 DT-IN  <- SRIO-OUTPUT-STREAM (P14)
 SRLD = inverted RCLK
+
+Test software to set outputs and read inputs: mx16_test.hal, mx16_test.xml
+
+updated 2024-10-17
+
